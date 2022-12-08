@@ -29,10 +29,6 @@ COPY timezone /etc/timezone
 ENV TZ=Australia/Perth
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY packages/proxysql_2.4.4-ubuntu20_amd64.deb /tmp/
-RUN dpkg -i /tmp/proxysql_2.4.4-ubuntu20_amd64.deb
-COPY proxysql.cnf /etc/proxysql.cnf.example
-
 COPY sites.conf /etc/apache2/sites-enabled/
 RUN mkdir /etc/webconfs/
 #RUN mkdir /etc/webconfs/apache/ 
