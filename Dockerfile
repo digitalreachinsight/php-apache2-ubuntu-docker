@@ -28,6 +28,7 @@ FROM python_libs_docker
 COPY timezone /etc/timezone
 ENV TZ=Australia/Perth
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN sed -i 's,^memory_limit =.*$,memory_limit = 2048M,' /etc/php/7.4/apache2/php.ini
 
 COPY sites.conf /etc/apache2/sites-enabled/
 RUN mkdir /etc/webconfs/
