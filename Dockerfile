@@ -1,5 +1,5 @@
 # Prepare the base environment.
-FROM ubuntu:20.04 as builder_base_docker
+FROM ubuntu:24.04 as builder_base_docker
 MAINTAINER itadmin@digitalreach.com.au 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Australia/Perth
@@ -28,7 +28,7 @@ FROM python_libs_docker
 COPY timezone /etc/timezone
 ENV TZ=Australia/Perth
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-RUN sed -i 's,^memory_limit =.*$,memory_limit = 2048M,' /etc/php/7.4/apache2/php.ini
+RUN sed -i 's,^memory_limit =.*$,memory_limit = 2048M,' /etc/php/8.3/apache2/php.ini
 
 COPY sites.conf /etc/apache2/sites-enabled/
 RUN mkdir /etc/webconfs/
