@@ -8,7 +8,7 @@ jobs:
   build-and-push:
     # Use the machine executor (Ubuntu VM) to support full Docker capabilities natively
     machine:
-      image: ubuntu-2404:current
+      image: ubuntu-2604:current
     steps:
       - checkout
       
@@ -18,10 +18,10 @@ jobs:
       # Log in to Docker Hub, build the Dockerfile, and push it
       - docker/check
       - docker/build:
-          image: digitalreachinsight/php-apache2-ubuntu
+          image: ghcr.io/digitalreachinsight/php-apache2-ubuntu
           tag: "latest,nightly-${CIRCLE_BUILD_NUM}"
       - docker/push:
-          image: digitalreachinsight/php-apache2-ubuntu
+          image: ghcr.io/digitalreachinsight/php-apache2-ubuntu
           tag: "latest,nightly-${CIRCLE_BUILD_NUM}"
 
 workflows:
