@@ -1,5 +1,6 @@
 version: 2.1
 
+# Import the official CircleCI Docker orb to simplify builds and pushes
 orbs:
   docker: circleci/docker@2.8.2
 
@@ -12,11 +13,11 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
 
-      # Fixed: Explicitly pass your GHCR authentication variables here
+      # Fixed: Corrected parameter names to 'docker-username' and 'docker-password'
       - docker/check:
           registry: ghcr.io
-          username: GHCR_USERNAME
-          password: GHCR_PASSWORD
+          docker-username: GHCR_USERNAME
+          docker-password: GHCR_PASSWORD
 
       - docker/build:
           registry: ghcr.io
