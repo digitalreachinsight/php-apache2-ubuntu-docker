@@ -7,8 +7,7 @@ orbs:
 jobs:
   build-and-push:
     # Use the machine executor (Ubuntu VM) to support full Docker capabilities natively
-    machine:
-      image: ubuntu-2604:current
+
     steps:
       - checkout
       
