@@ -1,24 +1,23 @@
 version: 2.1
 
-# Import the official CircleCI Docker orb to simplify builds and pushes
 orbs:
   docker: circleci/docker@2.8.2
 
 jobs:
   build-and-push:
-    # 1. Fixed: Define a valid Docker executor environment
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
-      
-      # 2. Fixed: Kept setup_remote_docker safely inside a docker executor
       - setup_remote_docker:
           docker_layer_caching: true
 
-      - docker/check
-      
-      # 3. Fixed: Added registry config for GHCR & removed the whitespace inside the tag string
+      # Fixed: Explicitly pass your GHCR authentication variables here
+      - docker/check:
+          registry: ghcr.io
+          username: GHCR_USERNAME
+          password: GHCR_PASSWORD
+
       - docker/build:
           registry: ghcr.io
           image: digitalreachinsight/php-apache2-ubuntu
@@ -33,7 +32,7 @@ workflows:
   nightly-build:
     triggers:
       - schedule:
-          cron: "0 0 * * *" # Runs daily at 00:00 UTC
+          cron: "0 0 * * *"
           filters:
             branches:
               only:
