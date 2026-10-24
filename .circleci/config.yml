@@ -21,12 +21,12 @@ jobs:
 
       - docker/build:
           registry: ghcr.io
-          image: digitalreachinsight/php-apache2-ubuntu
+          image: digitalreachinsight/php-apache2-ubuntu-docker
           tag: "latest,nightly-${CIRCLE_BUILD_NUM}"
           
       - docker/push:
           registry: ghcr.io
-          image: digitalreachinsight/php-apache2-ubuntu
+          image: digitalreachinsight/php-apache2-ubuntu-docker 
           tag: "latest,nightly-${CIRCLE_BUILD_NUM}"
 
 workflows:
