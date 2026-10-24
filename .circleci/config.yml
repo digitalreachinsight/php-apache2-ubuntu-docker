@@ -37,7 +37,7 @@ workflows:
     jobs:
       - build-and-push
 
-  # 2. This optional workflow ensures a build runs whenever you push code manually
+  # 2. This optional workflow ensures a build runs whenever you push code manually (test1)
   manual-push-build:
     jobs:
       - build-and-push:
